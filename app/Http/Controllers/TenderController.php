@@ -254,50 +254,7 @@ class TenderController extends Controller
 
         //sending emails when there is an update
 
-        $user=User::all();
-        $assigneduser_email="";
-        $assigneduser2_email="";
-        $created_user_mail="";
-        foreach ($user as $users){//degısıklıgı yapan assigned user degılse
-            if( $tender->user_id !== Auth::user()->id )
-            {
-                if ($users->id == $tender->user_id){
-                    $assigneduser_email=$users->email;
-                }
-            }
-            else {
-                $assigneduser_email="trafftec@gmail.com";
-            }
-            //degisikligi yapan 2.user degilse
-            if ( $tender->user_id2 !== Auth::user()->id)
-            {
-                if ($users->id == $tender->user_id2){
-                    $assigneduser2_email=$users->email;
-                }
-            }
-            else{
-                $assigneduser2_email="trafftec@gmail.com";
-            }
-            if( $tender->created_user_id !== Auth::user()->id){
-                $created_user_mail=$users->email;
-            }
-            else
-            {
-                $created_user_mail="trafftec@gmail.com";
-            }
-
-        }
-        $changed_item= $tender->name;
-
-        Mail::raw($changed_item, function ($m) use( $assigneduser_email,$assigneduser2_email,$created_user_mail)
-        {
-            $m->from('trafftec@gmail.com','traff-tec');
-
-            $m->to( $assigneduser_email)->subject('There is some changes!');
-            $m->to( $assigneduser2_email)->subject('There is some changes!');
-            $m->to( $created_user_mail)->subject('There is some changes!');
-
-        });
+       
 
         Session::flash('success','tender information is successfully updated');
         return redirect()->route('tender.show',$tender->id);
