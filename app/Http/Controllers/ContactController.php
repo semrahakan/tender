@@ -57,9 +57,12 @@ class ContactController extends Controller
         $contact->save();
         
         Session::flash('success','new contract has been successfully created');
+         $contacts= Contact::all();
+
+        return view('contact.index')->withContact($contacts);
 
         //redirect
-        return redirect() ->route('contact.index'); //this goes to show method
+       // return redirect() ->route('contact.index'); //this goes to show method
     }
 
     /**
