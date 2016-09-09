@@ -113,16 +113,17 @@ class TenderController extends Controller
         $tender->agreement = $agreement;
         $tender->priority = $priority;
         $tender->state = $state;
-        $tender->details = $details;
-
-        $tender->phases_id=$phases_id;
+        $tender->municipality_id=$municipality_id;
+        $municipality_id = DB::table('municipalities')->max('id');
+         $tender->phases_id=$phases_id;
         $tender->user_id=$user_id;
-        $tender->user_id2=$user_id2;
-
-
-        $tender -> created_user_id= Auth::user()->id;
-       $municipality_id = DB::table('municipalities')->max('id');
-       $tender->municipality_id=$municipality_id;
+         $tender -> created_user_id= Auth::user()->id;
+     
+         $tender->details = $details;
+         $tender->user_id2=$user_id2;
+       
+       
+      
 
         $tender->save();
 
