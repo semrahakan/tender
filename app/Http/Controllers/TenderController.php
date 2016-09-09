@@ -359,9 +359,11 @@ class TenderController extends Controller
         $tender->phases_id =$request->input('phases_id');
         $tender->updated_user_id =Auth::user()->id;
         $tender->save();
-        $products = Tender::all();
-        $user=User::all();
-        return view('tender.deneme')->withProducts($products)->withUser($user);
+        return view('welcome');
+        
+       // $products = Tender::all();
+     //   $user=User::all();
+       // return view('tender.deneme')->withProducts($products)->withUser($user);
     }
 
 
