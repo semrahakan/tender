@@ -3,6 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
+     {{ csrf_field() }}
         <div class="col-md-8 col-md-offset-2" >
             <div class="panel panel-default">
                 <div class="panel-heading"> <h3 style="color: darkblue">Reset Password </h3></div>
